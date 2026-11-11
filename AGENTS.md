@@ -18,6 +18,7 @@ vi har to søgeord og 18 virksomheder, ikke hundredvis.
 | `scraper/adapters/<type>.py` | `fetch(source: dict) -> list[RawJob]` – én adapter pr. system |
 | `scraper/run.py` | Kører kilderne, filtrerer, fletter med forrige kørsel, skriver `data/jobs.json` |
 | `scraper/build_page.py` | Indsætter data i `site/template.html` → `site/jobradar.html` |
+| `scraper/health.py` | Sundhedstjek: historik i `data/health.json`, alarmtekst i `data/health_alert.md` (bliver til GitHub-issue) |
 | `site/template.html` | Artefaktets side (design er færdigt – ret kun når en opgave siger det) |
 | `docs/` | Opgaver, kilder, arbejdsmåde |
 

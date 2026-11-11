@@ -17,7 +17,8 @@ Afkryds med dato og én linje, når opgaven er committet.
       → 2026-11-11: alle tre ok (Nordea 10 listed, ZF 1, Munich Re 0 job med søgeord i titlen); 0 matches; 141 tests grønne.
 - [x] **7. KPMG Danmark, Finland og Sverige** – `opgave-07-kpmg.md`
       → 2026-11-11: alle fem KPMG-kilder ok (Schweiz under "ikke dækket"); hele kørslen 22/22 kilder ok, ingen "adapter mangler"; 153 tests grønne.
-- [ ] **8. Sundhedstjek og alarm** – `opgave-08-sundhed.md`
+- [x] **8. Sundhedstjek og alarm** – `opgave-08-sundhed.md`
+      → 2026-11-11: `scraper/health.py` + `data/health.json` + issue-alarm i workflowet; 18 nye tests, 171 grønne.
 
 ## Kan ikke dækkes
 - **KPMG Schweiz** (jobs.kpmg.ch): robots.txt forbyder al automatisk adgang. Vises som "Ikke dækket" på siden.

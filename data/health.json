@@ -1,0 +1,159 @@
+{
+ "schema": 1,
+ "sources": {
+  "Ambu": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 151
+   }
+  ],
+  "Lundbeck": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 10
+   }
+  ],
+  "Novo Nordisk": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 0
+   }
+  ],
+  "Wärtsilä": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 10
+   }
+  ],
+  "Demant": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 7
+   }
+  ],
+  "Ericsson": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 6
+   }
+  ],
+  "Nordea": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 10
+   }
+  ],
+  "Søstrene Grene": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 0
+   }
+  ],
+  "Bygma": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 10
+   }
+  ],
+  "Bertelsmann": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 39
+   }
+  ],
+  "Ricoh Europe": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 119
+   }
+  ],
+  "ZF Lifetec": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 1
+   }
+  ],
+  "KPMG – Danmark": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 14
+   }
+  ],
+  "KPMG – Finland": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 0
+   }
+  ],
+  "KPMG – Sverige": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 8
+   }
+  ],
+  "KPMG – Tyskland": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 370
+   }
+  ],
+  "KPMG – UK": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 6
+   }
+  ],
+  "DSV": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 55
+   }
+  ],
+  "Coloplast": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 280
+   }
+  ],
+  "Givaudan": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 336
+   }
+  ],
+  "Swiss Re": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 203
+   }
+  ],
+  "Munich Re": [
+   {
+    "date": "2026-11-11",
+    "ok": true,
+    "listed": 0
+   }
+  ]
+ }
+}
