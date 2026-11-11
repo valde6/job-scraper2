@@ -59,7 +59,8 @@ def not_covered_entry(company: str, source: dict) -> dict:
 def run_source(company: str, source: dict) -> tuple[list[RawJob] | None, dict]:
     """Kalder adapteren. Fejl bliver til kildestatus, de vælter ikke kørslen (AGENTS.md regel 5)."""
     status = {"company": company, "label": source.get("label"), "type": source["type"], "ok": False,
-              "listed": 0, "matched": 0, "error": None, "seconds": 0.0}
+              "listed": 0, "matched": 0, "error": None, "seconds": 0.0,
+              "allow_empty": bool(source.get("allow_empty"))}
     fetch = adapters.ADAPTERS.get(source["type"])
     if fetch is None:
         status["error"] = "adapter mangler"

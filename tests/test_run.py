@@ -132,6 +132,18 @@ def test_filtrering_soegeord_og_land(env):
     assert (s["listed"], s["matched"], s["ok"]) == (6, 2, True)
 
 
+def test_allow_empty_fra_config_kommer_med_i_kildestatus(env, tmp_path):
+    _, go, _ = env
+    cfg = tmp_path / "companies.yaml"
+    doc = go(DAY1)
+    assert [s["allow_empty"] for s in doc["sources"]] == [False, False]
+    data = yaml.safe_load(cfg.read_text())
+    data["companies"][0]["sources"][0]["allow_empty"] = True
+    cfg.write_text(yaml.safe_dump(data))
+    doc = go(DAY2)
+    assert {s["company"]: s["allow_empty"] for s in doc["sources"]} == {"Alfa": True, "Beta": False}
+
+
 def test_flere_lande_og_dublet(env):
     state, go, _ = env
     state["A"] = [raw(path="1", loc="Berlin | Stockholm | Zürich"), raw(path="1", loc="Berlin")]

@@ -74,6 +74,33 @@ def test_sund_kilde_har_ingen_problemer():
     assert codes([h(listed=100), h(listed=90), h(listed=110), h(listed=95)]) == []
 
 
+# ---------------------------------------------------------------- allow_empty
+def test_allow_empty_slaar_tom_og_fald_fra():
+    assert codes([h(listed=0)] * 5) == ["tom"]
+    assert health.problems([h(listed=0)] * 5, allow_empty=True) == []
+    fald = [h(listed=100)] * 7 + [h(listed=0)]
+    assert codes(fald) == ["fald"]
+    assert health.problems(fald, allow_empty=True) == []
+
+
+def test_allow_empty_slaar_ikke_fejl_fra():
+    found = health.problems([h(listed=0), h(ok=False), h(ok=False)], allow_empty=True)
+    assert [c for c, _ in found] == ["fejl"]
+
+
+def test_main_respekterer_allow_empty_fra_kildestatus(tmp_path):
+    tom = src("Novo Nordisk", listed=0) | {"allow_empty": True}
+    ellers = src("Bygma", listed=0)
+    for day in ("2026-11-10", "2026-11-11"):
+        assert not run_health(tmp_path, day, [tom, ellers]).exists()
+    text = run_health(tmp_path, "2026-11-12", [tom, ellers]).read_text(encoding="utf-8")
+    assert "**Bygma**" in text and "Novo Nordisk" not in text
+    broken = tom | {"ok": False, "listed": 0, "error": "HTTPError: 503"}
+    run_health(tmp_path, "2026-11-13", [broken, ellers])
+    text = run_health(tmp_path, "2026-11-14", [broken, ellers]).read_text(encoding="utf-8")
+    assert "**Novo Nordisk** (successfactors): fejl" in text
+
+
 # ---------------------------------------------------------------- historik
 def src(company="A", label=None, ok=True, listed=10, error=None, type_="successfactors"):
     return {"company": company, "label": label, "type": type_, "ok": ok, "listed": listed, "matched": 0,

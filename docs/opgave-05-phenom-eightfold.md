@@ -26,4 +26,7 @@ Se **Phenom** og **Eightfold** i `docs/KILDER.md`. Vigtigt fra robots.txt:
 - Tests grønne. Commit: `Opgave 5: Phenom og Eightfold`. Afkryds. **Ingen push.**
 
 ## Noter fra udførelsen
-_(udfyldes af Claude Code)_
+Afkrydset og noteret bagud i opgave 9. `python -m scraper.run --only "<navn>" --dry-run` den 2026-11-11 (alle `ok: true`):
+- **Ricoh Europe** (phenom): `listed=119`, `matched=1` – "SAP SuccessFactors Employee Central & Compensation Engineer" (London, GB, opslået 2026-11-11).
+- **Givaudan** (phenom, `/global/en`): `listed=336`, `matched=0` – ingen titler med søgeord i et af de seks lande.
+- **Ericsson** (eightfold): `listed=6`, `matched=0` – søgningen finder 6 opslag, men ingen har SuccessFactors/HRIS i titlen i et af de seks lande, så ingen titler.

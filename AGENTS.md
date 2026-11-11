@@ -54,7 +54,7 @@ vi har to søgeord og 18 virksomheder, ikke hundredvis.
 - Et job, der ikke længere vises af en kilde, der **virkede**, sættes `active: false`. Fejler kilden, røres dens job ikke.
 - Inaktive job slettes efter `keep_inactive_days`.
 - `sources[].last_ok` = datoen for kildens seneste vellykkede kørsel (`null` = aldrig). Er den `null`, er næste vellykkede kørsel kildens
-  **første** (baseline). Feltet er tilføjet i opgave 1; siden ignorerer det, så `schema` er uændret. En kildes job kendes på
+  **første** (baseline). `sources[].allow_empty` (bool, fra `companies.yaml`) = kilden har normalt 0 opslag; bruges kun af `health.py`. Feltet `last_ok` er tilføjet i opgave 1; siden ignorerer det, så `schema` er uændret. En kildes job kendes på
   `company` + `source` (adaptertypen); fejler en kilde, røres alle virksomhedens job med samme adaptertype.
 - Siden (`site/template.html`) læser præcis disse felter. Ændrer du kontrakten, så hæv `schema` og ret siden i samme opgave.
 

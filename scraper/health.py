@@ -9,6 +9,9 @@ Reglerne (se docs/opgave-08-sundhed.md):
   fejl  – kilden har fejlet i 2 kørsler i træk
   tom   – kilden har haft listed = 0 i 3 kørsler i træk (mulig ændring af siden)
   fald  – listed er under 20 % af medianen for de 7 foregående kørsler med data
+
+Kilder med `allow_empty: true` i config/companies.yaml (kopieret til `sources[].allow_empty` af run.py) virker, men har
+normalt 0 opslag med søgeordene: for dem gælder kun "fejl".
 """
 from __future__ import annotations
 
@@ -52,8 +55,10 @@ def _streak(history: list[dict], pred) -> int:
     return n
 
 
-def problems(history: list[dict]) -> list[tuple[str, str]]:
-    """Problemer for én kilde som [(kode, forklaring)]. history = kørsler, ældste først, nyeste (nu) sidst."""
+def problems(history: list[dict], allow_empty: bool = False) -> list[tuple[str, str]]:
+    """Problemer for én kilde som [(kode, forklaring)]. history = kørsler, ældste først, nyeste (nu) sidst.
+
+    allow_empty: kilden har normalt 0 opslag – så springes "tom" og "fald" over; "fejl" gælder stadig."""
     found: list[tuple[str, str]] = []
     if not history:
         return found
@@ -61,6 +66,9 @@ def problems(history: list[dict]) -> list[tuple[str, str]]:
     fails = _streak(history, lambda h: not h["ok"])
     if fails >= FAIL_RUNS:
         found.append(("fejl", f"fejlet i {fails} kørsler i træk"))
+
+    if allow_empty:
+        return found
 
     empties = _streak(history, lambda h: h["ok"] and h["listed"] == 0)
     if empties >= EMPTY_RUNS:
@@ -92,7 +100,7 @@ def alert_text(sources: list[dict], health: dict) -> str | None:
     """Teksten til GitHub-issuet, eller None hvis alle kilder er sunde."""
     lines = []
     for s in sources:
-        probs = problems(health["sources"][source_name(s)])
+        probs = problems(health["sources"][source_name(s)], bool(s.get("allow_empty")))
         if not probs:
             continue
         codes = ", ".join(code for code, _ in probs)
