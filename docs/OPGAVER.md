@@ -9,7 +9,8 @@ Afkryds med dato og én linje, når opgaven er committet.
       → 2026-11-11: alle 13 kilder ok (søgeside + sitemap-fallback), 1 aktivt match (Bertelsmann) + 1 hos KPMG Tyskland; 116 tests grønne.
 - [x] **3. Byg siden til artefaktet** – `opgave-03-side.md`
       → 2026-11-11: `scraper/build_page.py` + 6 tests (122 grønne); `site/jobradar.html` bygget af rigtige data (2 aktive job).
-- [ ] **4. GitHub Actions: daglig kørsel + tests** – `opgave-04-github-actions.md`
+- [x] **4. GitHub Actions: daglig kørsel + tests** – `opgave-04-github-actions.md`
+      → 2026-11-11: `hris-scrape` (daglig + manuel med `only`) og `ci` oprettet; mangler at blive pushet og kørt første gang.
       → Når den er pushet og har kørt én gang: sig til Claude i Cowork, så den tjekker at artefaktet opdateres.
 - [ ] **5. Phenom (Ricoh, Givaudan) og Eightfold (Ericsson)** – `opgave-05-phenom-eightfold.md`
 - [ ] **6. Nordea, ZF Lifetec og Munich Re** – `opgave-06-nordea-zf-munichre.md`

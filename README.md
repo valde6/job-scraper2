@@ -16,4 +16,9 @@ python -m scraper.run                       # alle
 python -m scraper.build_page                # byg site/jobradar.html
 ```
 
+## Kør scraperen manuelt på GitHub
+Actions → **hris-scrape** → **Run workflow**. Skriv evt. en virksomhed i feltet `only` (navn som i `config/companies.yaml`,
+fx `KPMG Tyskland`); lad feltet stå tomt for at køre alle. Kørslen committer `data/jobs.json` og `site/jobradar.html`.
+Den kører også automatisk hver morgen kl. 04:17 UTC. Tests (`ci`) kører ved hvert push.
+
 Kun til personlig brug. Respekterer robots.txt og henter kun offentlige opslag.

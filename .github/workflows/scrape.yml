@@ -1,0 +1,59 @@
+name: hris-scrape
+
+on:
+  schedule:
+    - cron: "17 4 * * *"   # 05:17 dansk vintertid / 06:17 sommertid
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Kun denne virksomhed (navn som i config/companies.yaml). Tom = alle."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scrape
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Kør scraperen
+        env:
+          ONLY: ${{ inputs.only }}
+        run: |
+          set -o pipefail   # så en crash i run.py ikke skjules af tee
+          if [ -n "$ONLY" ]; then
+            python -m scraper.run --only "$ONLY" | tee data/last_run.log
+          else
+            python -m scraper.run | tee data/last_run.log
+          fi
+
+      - name: Byg siden
+        run: python -m scraper.build_page
+
+      - name: Commit og push
+        run: |
+          git config user.name "hris-radar-bot"
+          git config user.email "hris-radar-bot@users.noreply.github.com"
+          git add data site/jobradar.html
+          if git diff --cached --quiet; then
+            echo "Ingen ændringer."
+            exit 0
+          fi
+          git commit -m "Jobradar opdateret $(date -u +'%Y-%m-%d %H:%M') UTC"
+          git pull --rebase --autostash
+          git push

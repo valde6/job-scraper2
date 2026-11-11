@@ -28,4 +28,8 @@ Repoet er offentligt, og Cowork henter `site/jobradar.html` derfra kl. ca. 06:40
 Alarmer ved fejlende kilder (opgave 8).
 
 ## Noter fra udførelsen
-_(udfyldes af Claude Code)_
+- **Valdemar skal:** pushe, derefter Actions → hris-scrape → Run workflow (tomt `only`) og tjekke, at der kommer en commit fra `hris-radar-bot`. Under Settings → Actions → General skal workflow-rettigheder tillade skrivning (workflowet beder selv om `contents: write`, men repo-indstillingen må ikke være låst til read-only for organisationen).
+- `only` sendes via en miljøvariabel (`ONLY`) og ikke direkte ind i shell-scriptet, så et virksomhedsnavn med citationstegn ikke kan ødelægge kommandoen.
+- `set -o pipefail` er sat, så en crash i `run.py` fejler trinnet trods `| tee`. `run.py` returnerer 0 når kilder fejler, så det fejler ikke kørslen.
+- `data/last_run.log` committes sammen med `data/` (som opgaven foreskriver).
+- Workflowene er kun valideret som YAML lokalt; de er ikke kørt på GitHub endnu.
