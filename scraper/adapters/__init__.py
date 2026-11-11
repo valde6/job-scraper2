@@ -7,4 +7,8 @@ from collections.abc import Callable
 
 from scraper.model import RawJob
 
-ADAPTERS: dict[str, Callable[[dict], list[RawJob]]] = {}
+from scraper.adapters import successfactors
+
+ADAPTERS: dict[str, Callable[[dict], list[RawJob]]] = {
+    "successfactors": successfactors.fetch,
+}

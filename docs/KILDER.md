@@ -48,6 +48,12 @@ Opdatér filen, når en kilde ændrer sig (dato + hvad).
   - Almindelig `<urlset>` (fx Bertelsmann, ZF): `<loc>` med titel og by i adressen (`/job/München-Manager-…/1433825433/`) og `<lastmod>`.
 - **Jobside** `/job/<slug>/<id>/`: schema.org JobPosting (JSON-LD eller `itemprop`) med `datePosted` og `jobLocation`.
 - Job-id = det lange tal i adressen.
+- **"Unify"-sider (11/11-2026, opgave 2):** Ambu, Novo Nordisk (delvist), KPMG Tyskland m.fl. – søgesiden `/search/` er et tomt skelet
+  (`j2w.SearchResultsUnify`), og resultaterne hentes af JavaScript fra `/services/` (forbudt). Adapteren bruger så `/sitemap.xml`.
+  KPMG Tysklands jobsider er også tomme skeletter: kun `<title>` og adressens by findes, **ingen opslagsdato** og ingen lokation
+  (derfor `country: DE` i companies.yaml). Sider med `tr.data-row` og søgefeltet `#search-wrapper` uden rækker = ægte 0 resultater.
+- Wärtsilä, Lundbeck, Bygma m.fl. viser 7–10 "anbefalede" rækker, når søgeordet ikke findes (samme rækker for alle søgeord).
+- Fuldtekstsøgning er ordbaseret: `q=SuccessFactors` finder ikke "Success Factors" med mellemrum (sitemap-tjek 11/11 fandt ingen sådan titel).
 
 ### Eightfold – Ericsson
 - `GET https://jobs.ericsson.com/api/pcsx/search?domain=ericsson.com&query={ord}&location=&start={n}&sort_by=timestamp`

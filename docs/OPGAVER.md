@@ -5,7 +5,8 @@ Afkryds med dato og én linje, når opgaven er committet.
 
 - [x] **1. Skelet, fælles kode og dataformat** – `opgave-01-skelet.md`
       → 2026-11-11: common/match/model/run + 92 tests grønne; `--dry-run` viser 22 kilder "adapter mangler" og KPMG Schweiz som ikke dækket.
-- [ ] **2. SuccessFactors-adapter (13 kilder)** – `opgave-02-successfactors.md`
+- [x] **2. SuccessFactors-adapter (13 kilder)** – `opgave-02-successfactors.md`
+      → 2026-11-11: alle 13 kilder ok (søgeside + sitemap-fallback), 1 aktivt match (Bertelsmann) + 1 hos KPMG Tyskland; 116 tests grønne.
 - [ ] **3. Byg siden til artefaktet** – `opgave-03-side.md`
 - [ ] **4. GitHub Actions: daglig kørsel + tests** – `opgave-04-github-actions.md`
       → Når den er pushet og har kørt én gang: sig til Claude i Cowork, så den tjekker at artefaktet opdateres.

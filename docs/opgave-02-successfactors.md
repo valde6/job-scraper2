@@ -35,4 +35,38 @@ Læs afsnittet **SuccessFactors Career Site Builder** i `docs/KILDER.md` (søges
 Andre systemer. GitHub Actions.
 
 ## Noter fra udførelsen
-_(udfyldes af Claude Code)_
+Kørt live 11/11-2026 med `python -m scraper.run --only "<navn>" --dry-run`. Format: listed / matched (titel + land ok) / titler med søgeord i titlen.
+
+| Kilde | listed | matched | Titler med søgeord (før landefilter) |
+|---|---|---|---|
+| Ambu | 151 | 0 | – (via sitemap, se nedenfor) |
+| Lundbeck | 10 | 0 | – |
+| Novo Nordisk | 0 | 0 | – (ægte 0 resultater; sitemap har 466 opslag, ingen med søgeord) |
+| Wärtsilä | 10 | 0 | – (sitemap: 138 opslag, ingen) |
+| Demant | 7 | 0 | "(Senior) HR Digitalisation Specialist for Core & Workforce, SuccessFactors" – Szczecin, PL (ikke et af landene) |
+| Søstrene Grene | 0 | 0 | – |
+| Bygma | 10 | 0 | – |
+| Bertelsmann | 39 | **1** | "Praktikant:in im Bereich HRIS (m/w/d)" – Gütersloh, DE, slået op 31/10 |
+| KPMG Tyskland | 370 | **1** | "Senior Consultant SAP SuccessFactors / HCM (w/m/d)" – Berlin, DE (ingen opslagsdato) |
+| KPMG UK | 6 | 0 | – |
+| DSV | 55 | 0 | – |
+| Coloplast | 281 | 0 | – |
+| Swiss Re | 202 | 0 | – |
+
+Fund og afvigelser:
+- **"Unify"-sider:** Ambu og KPMG Tyskland (og Novo/Søstrene Grene i nogle tilfælde) leverer et tomt søgeskelet; resultaterne hentes af
+  JavaScript fra `/services/`, som robots.txt forbyder. Første udgave behandlede det som "0 resultater" og missede KPMG Tysklands
+  SuccessFactors-job (fundet ved at tjekke sitemap'en). Nu regnes en søgeside kun som ægte 0 resultater, hvis den har `#search-wrapper`
+  og ikke `SearchResultsUnify`; ellers bruges `/sitemap.xml`. Se `docs/KILDER.md`.
+- **KPMG Tysklands jobsider er tomme skeletter** (ingen JSON-LD, ingen dato, ingen lokation). Titlen hentes fra `<title>`, byen står i
+  adressen, og **opslagsdato mangler** – jobbet får derfor `first_seen`/`baseline` i run.py. For at få land på jobbene tilføjede jeg en
+  valgfri `country`-nøgle i `companies.yaml` (KPMG Tyskland: `DE`, KPMG UK: `GB`). Den bruges kun, når kilden slet ikke oplyser et sted.
+  (Rettelse af config uden for opgavens ordlyd – ellers ville fx et KPMG-job i Köln blive tabt, fordi byen ikke står i settings.)
+- Jobsiden hentes kun for job med søgeord i titlen og kun når dato/land mangler (højst 30 pr. kilde). "Mangler land" betyder: ingen
+  af settings' lande i lokationen – også en række med fx "Toyama, JP" giver derfor ét ekstra jobside-kald.
+- CSB-datoer i microdata ser ud som `Wed Nov 11 02:00:00 UTC 2026`; `parse_date` forstår nu formatet (`common.py`).
+- `scraper/record.py` (`python -m scraper.record "Wärtsilä"`) optager til `tests/fixtures/<navn>/`. Fixtures: `wartsila`, `bertelsmann`
+  (kun de normale svar – sitemap-fallbacken testes med håndskrevne RSS/urlset-eksempler og falske svar).
+- `soup()` er tilføjet til `common.py`. Sitemap-parseren bruger lxml (`recover=True`) fordi RSS-filerne er store (1,9 MB hos Wärtsilä).
+- Søgningen bruger kun ordene fra `settings.yaml` ("SuccessFactors", "HRIS"). "Success Factors" med mellemrum findes ikke af søgningen,
+  men fanges via sitemap-fallback på unify-sider.

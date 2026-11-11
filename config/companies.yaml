@@ -58,8 +58,8 @@ companies:
       - {type: hrmanager, customer: kpmg, label: Danmark}
       - {type: oracle, url: https://iabdgs.fa.ocs.oraclecloud.com, site: CX_1002, label: Finland}
       - {type: jobylon, company_id: 1532, label: Sverige}
-      - {type: successfactors, url: https://jobs.kpmg.de, label: Tyskland}
-      - {type: successfactors, url: https://experienced.kpmgcareers.co.uk, label: UK}
+      - {type: successfactors, url: https://jobs.kpmg.de, label: Tyskland, country: DE}
+      - {type: successfactors, url: https://experienced.kpmgcareers.co.uk, label: UK, country: GB}
       - type: none
         label: Schweiz
         url: https://jobs.kpmg.ch

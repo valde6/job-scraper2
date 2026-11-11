@@ -195,9 +195,13 @@ def clean(s: str | None) -> str:
     return re.sub(r"\s+", " ", s or "").strip()
 
 
+def soup(html: str) -> BeautifulSoup:
+    return BeautifulSoup(html or "", "lxml")
+
+
 def jsonld_jobposting(html: str) -> dict | None:
     """Første schema.org JobPosting i siden – også inde i @graph og i lister."""
-    s = BeautifulSoup(html or "", "lxml")
+    s = soup(html)
     for tag in s.find_all("script", type="application/ld+json"):
         try:
             data = json.loads(tag.string or tag.get_text() or "", strict=False)
@@ -253,6 +257,8 @@ _RE_ISO = re.compile(r"(?<!\d)(\d{4})-(\d{2})-(\d{2})(?!\d)")
 _RE_DMY_NUM = re.compile(r"(?<!\d)(\d{1,2})\.\s?(\d{1,2})\.\s?(\d{4})(?!\d)")
 _RE_D_MON_Y = re.compile(r"(?<!\d)(\d{1,2})(?:st|nd|rd|th)?\.?\s+(?:of\s+)?" + _WORD + r",?\s+(\d{4})(?!\d)", re.I)
 _RE_MON_D_Y = re.compile(_WORD + r"\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(\d{4})(?!\d)", re.I)
+# SuccessFactors' microdata: "Wed Nov 11 02:00:00 UTC 2026"
+_RE_JAVA = re.compile(_WORD + r"\s+(\d{1,2})\s+\d{1,2}:\d{2}(?::\d{2})?\s+[A-Z]{2,5}\s+(\d{4})(?!\d)")
 _RE_AGO = re.compile(r"(\d+)(\+)?\s*(?:days?|dage|dagar|tagen?|päivää)\s+(?:ago|siden|sedan|sitten)\b|\bvor\s+(\d+)(\+)?\s+tagen?\b", re.I)
 _TODAY_WORDS = re.compile(r"\b(?:today|heute|i\s*dag|idag|tänään|just\s+posted)\b|\b\d+\s*(?:hours?|minutes?)\s+ago\b", re.I)
 _YESTERDAY_WORDS = re.compile(r"\b(?:yesterday|gestern|i\s*går|igår|eilen)\b", re.I)
@@ -293,6 +299,9 @@ def parse_date(text, today: date | None = None) -> str | None:
     for m in _RE_D_MON_Y.finditer(s):
         if mo := _month(m.group(2)):
             return _ymd(int(m.group(3)), mo, int(m.group(1)))
+    for m in _RE_JAVA.finditer(s):
+        if mo := _month(m.group(1)):
+            return _ymd(int(m.group(3)), mo, int(m.group(2)))
     for m in _RE_MON_D_Y.finditer(s):
         if mo := _month(m.group(1)):
             return _ymd(int(m.group(3)), mo, int(m.group(2)))
