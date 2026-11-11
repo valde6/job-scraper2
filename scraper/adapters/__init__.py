@@ -7,8 +7,10 @@ from collections.abc import Callable
 
 from scraper.model import RawJob
 
-from scraper.adapters import successfactors
+from scraper.adapters import eightfold, phenom, successfactors
 
 ADAPTERS: dict[str, Callable[[dict], list[RawJob]]] = {
     "successfactors": successfactors.fetch,
+    "phenom": phenom.fetch,
+    "eightfold": eightfold.fetch,
 }
