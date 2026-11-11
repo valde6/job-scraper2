@@ -15,7 +15,8 @@ Afkryds med dato og én linje, når opgaven er committet.
 - [ ] **5. Phenom (Ricoh, Givaudan) og Eightfold (Ericsson)** – `opgave-05-phenom-eightfold.md`
 - [x] **6. Nordea, ZF Lifetec og Munich Re** – `opgave-06-nordea-zf-munichre.md`
       → 2026-11-11: alle tre ok (Nordea 10 listed, ZF 1, Munich Re 0 job med søgeord i titlen); 0 matches; 141 tests grønne.
-- [ ] **7. KPMG Danmark, Finland og Sverige** – `opgave-07-kpmg.md`
+- [x] **7. KPMG Danmark, Finland og Sverige** – `opgave-07-kpmg.md`
+      → 2026-11-11: alle fem KPMG-kilder ok (Schweiz under "ikke dækket"); hele kørslen 22/22 kilder ok, ingen "adapter mangler"; 153 tests grønne.
 - [ ] **8. Sundhedstjek og alarm** – `opgave-08-sundhed.md`
 
 ## Kan ikke dækkes
