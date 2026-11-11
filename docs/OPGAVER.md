@@ -13,7 +13,8 @@ Afkryds med dato og én linje, når opgaven er committet.
       → 2026-11-11: `hris-scrape` (daglig + manuel med `only`) og `ci` oprettet; mangler at blive pushet og kørt første gang.
       → Når den er pushet og har kørt én gang: sig til Claude i Cowork, så den tjekker at artefaktet opdateres.
 - [ ] **5. Phenom (Ricoh, Givaudan) og Eightfold (Ericsson)** – `opgave-05-phenom-eightfold.md`
-- [ ] **6. Nordea, ZF Lifetec og Munich Re** – `opgave-06-nordea-zf-munichre.md`
+- [x] **6. Nordea, ZF Lifetec og Munich Re** – `opgave-06-nordea-zf-munichre.md`
+      → 2026-11-11: alle tre ok (Nordea 10 listed, ZF 1, Munich Re 0 job med søgeord i titlen); 0 matches; 141 tests grønne.
 - [ ] **7. KPMG Danmark, Finland og Sverige** – `opgave-07-kpmg.md`
 - [ ] **8. Sundhedstjek og alarm** – `opgave-08-sundhed.md`
 
