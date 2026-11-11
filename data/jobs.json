@@ -1,0 +1,303 @@
+{
+ "schema": 1,
+ "generated_at": "2026-11-11T17:58:28+00:00",
+ "keywords": [
+  "SuccessFactors",
+  "HRIS"
+ ],
+ "countries": [
+  "DK",
+  "SE",
+  "FI",
+  "DE",
+  "GB",
+  "CH"
+ ],
+ "jobs": [
+  {
+   "id": "26b7f156601e",
+   "company": "KPMG",
+   "title": "Senior Consultant SAP SuccessFactors / HCM (w/m/d)",
+   "url": "https://jobs.kpmg.de/job/Berlin-Senior-Consultant-SAP-SuccessFactors-HCM-%28wmd%29-10557/861992201/",
+   "location": "",
+   "country": "DE",
+   "countries": [
+    "DE"
+   ],
+   "posted": null,
+   "first_seen": "2026-11-11",
+   "last_seen": "2026-11-11",
+   "active": true,
+   "date_basis": "baseline",
+   "source": "successfactors"
+  },
+  {
+   "id": "93872cfa95ce",
+   "company": "Bertelsmann",
+   "title": "Praktikant:in im Bereich HRIS (m/w/d)",
+   "url": "https://jobsearch.createyourowncareer.com/Bertelsmann_Corporate/job/G%C3%BCtersloh-Praktikantin-im-Bereich-HRIS-%28mwd%29/1412284033/",
+   "location": "Gütersloh, Carl-Bertelsmann-Str. 270, Germany",
+   "country": "DE",
+   "countries": [
+    "DE"
+   ],
+   "posted": "2026-10-31",
+   "first_seen": "2026-11-11",
+   "last_seen": "2026-11-11",
+   "active": true,
+   "date_basis": "posted",
+   "source": "successfactors"
+  }
+ ],
+ "sources": [
+  {
+   "company": "Ambu",
+   "label": null,
+   "type": "successfactors",
+   "ok": true,
+   "listed": 151,
+   "matched": 0,
+   "error": null,
+   "seconds": 2.2,
+   "last_ok": "2026-11-11"
+  },
+  {
+   "company": "Lundbeck",
+   "label": null,
+   "type": "successfactors",
+   "ok": true,
+   "listed": 10,
+   "matched": 0,
+   "error": null,
+   "seconds": 2.3,
+   "last_ok": "2026-11-11"
+  },
+  {
+   "company": "Novo Nordisk",
+   "label": null,
+   "type": "successfactors",
+   "ok": true,
+   "listed": 0,
+   "matched": 0,
+   "error": null,
+   "seconds": 2.2,
+   "last_ok": "2026-11-11"
+  },
+  {
+   "company": "Wärtsilä",
+   "label": null,
+   "type": "successfactors",
+   "ok": true,
+   "listed": 10,
+   "matched": 0,
+   "error": null,
+   "seconds": 2.3,
+   "last_ok": "2026-11-11"
+  },
+  {
+   "company": "Demant",
+   "label": null,
+   "type": "successfactors",
+   "ok": true,
+   "listed": 7,
+   "matched": 0,
+   "error": null,
+   "seconds": 4.4,
+   "last_ok": "2026-11-11"
+  },
+  {
+   "company": "Ericsson",
+   "label": null,
+   "type": "eightfold",
+   "ok": false,
+   "listed": 0,
+   "matched": 0,
+   "error": "adapter mangler",
+   "seconds": 0.0,
+   "last_ok": null
+  },
+  {
+   "company": "Nordea",
+   "label": null,
+   "type": "nordea",
+   "ok": false,
+   "listed": 0,
+   "matched": 0,
+   "error": "adapter mangler",
+   "seconds": 0.0,
+   "last_ok": null
+  },
+  {
+   "company": "Søstrene Grene",
+   "label": null,
+   "type": "successfactors",
+   "ok": true,
+   "listed": 0,
+   "matched": 0,
+   "error": null,
+   "seconds": 2.4,
+   "last_ok": "2026-11-11"
+  },
+  {
+   "company": "Bygma",
+   "label": null,
+   "type": "successfactors",
+   "ok": true,
+   "listed": 10,
+   "matched": 0,
+   "error": null,
+   "seconds": 3.3,
+   "last_ok": "2026-11-11"
+  },
+  {
+   "company": "Bertelsmann",
+   "label": null,
+   "type": "successfactors",
+   "ok": true,
+   "listed": 39,
+   "matched": 1,
+   "error": null,
+   "seconds": 3.3,
+   "last_ok": "2026-11-11"
+  },
+  {
+   "company": "Ricoh Europe",
+   "label": null,
+   "type": "phenom",
+   "ok": false,
+   "listed": 0,
+   "matched": 0,
+   "error": "adapter mangler",
+   "seconds": 0.0,
+   "last_ok": null
+  },
+  {
+   "company": "ZF Lifetec",
+   "label": null,
+   "type": "strapi_zf",
+   "ok": false,
+   "listed": 0,
+   "matched": 0,
+   "error": "adapter mangler",
+   "seconds": 0.0,
+   "last_ok": null
+  },
+  {
+   "company": "KPMG",
+   "label": "Danmark",
+   "type": "hrmanager",
+   "ok": false,
+   "listed": 0,
+   "matched": 0,
+   "error": "adapter mangler",
+   "seconds": 0.0,
+   "last_ok": null
+  },
+  {
+   "company": "KPMG",
+   "label": "Finland",
+   "type": "oracle",
+   "ok": false,
+   "listed": 0,
+   "matched": 0,
+   "error": "adapter mangler",
+   "seconds": 0.0,
+   "last_ok": null
+  },
+  {
+   "company": "KPMG",
+   "label": "Sverige",
+   "type": "jobylon",
+   "ok": false,
+   "listed": 0,
+   "matched": 0,
+   "error": "adapter mangler",
+   "seconds": 0.0,
+   "last_ok": null
+  },
+  {
+   "company": "KPMG",
+   "label": "Tyskland",
+   "type": "successfactors",
+   "ok": true,
+   "listed": 370,
+   "matched": 1,
+   "error": null,
+   "seconds": 3.3,
+   "last_ok": "2026-11-11"
+  },
+  {
+   "company": "KPMG",
+   "label": "UK",
+   "type": "successfactors",
+   "ok": true,
+   "listed": 6,
+   "matched": 0,
+   "error": null,
+   "seconds": 2.2,
+   "last_ok": "2026-11-11"
+  },
+  {
+   "company": "DSV",
+   "label": null,
+   "type": "successfactors",
+   "ok": true,
+   "listed": 55,
+   "matched": 0,
+   "error": null,
+   "seconds": 7.2,
+   "last_ok": "2026-11-11"
+  },
+  {
+   "company": "Coloplast",
+   "label": null,
+   "type": "successfactors",
+   "ok": true,
+   "listed": 280,
+   "matched": 0,
+   "error": null,
+   "seconds": 13.2,
+   "last_ok": "2026-11-11"
+  },
+  {
+   "company": "Givaudan",
+   "label": null,
+   "type": "phenom",
+   "ok": false,
+   "listed": 0,
+   "matched": 0,
+   "error": "adapter mangler",
+   "seconds": 0.0,
+   "last_ok": null
+  },
+  {
+   "company": "Swiss Re",
+   "label": null,
+   "type": "successfactors",
+   "ok": true,
+   "listed": 203,
+   "matched": 0,
+   "error": null,
+   "seconds": 10.3,
+   "last_ok": "2026-11-11"
+  },
+  {
+   "company": "Munich Re",
+   "label": null,
+   "type": "radancy_sitemap",
+   "ok": false,
+   "listed": 0,
+   "matched": 0,
+   "error": "adapter mangler",
+   "seconds": 0.0,
+   "last_ok": null
+  }
+ ],
+ "not_covered": [
+  {
+   "company": "KPMG",
+   "scope": "Schweiz (jobs.kpmg.ch)",
+   "reason": "robots.txt forbyder al automatisk adgang (User-agent * / Disallow /)"
+  }
+ ]
+}

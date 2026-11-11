@@ -33,4 +33,7 @@ Det er den fil, Cowork udgiver som Claude-artefaktet **HRIS-jobradar**.
 Ændringer i sidens design (bed Claude i Cowork om det). Udgivelse af artefaktet (gøres af Cowork).
 
 ## Noter fra udførelsen
-_(udfyldes af Claude Code)_
+- Fuld `python -m scraper.run` giver 13 ok kilder og 2 aktive job (Bertelsmann, KPMG Tyskland). De øvrige 9 kilder står som "adapter mangler" (opgave 5-7) og vises som fejl i kildestatus på siden, indtil de er lavet.
+- Siden er ikke åbnet i en rigtig browser (ingen grafisk adgang fra Claude Code). Kontrolleret: filen starter med `<title>HRIS-jobradar</title>`, dataene kan parses tilbage, og sidens script har gyldig JavaScript-syntaks (`node`). Valdemar bør åbne `site/jobradar.html` og kigge på tabel og periodeknapper.
+- Manglende `data/jobs.json` giver tom struktur med tomme lister (ikke skabelonens KPMG-linje i `not_covered`).
+- `data/jobs.json` indeholder kun to job og er kun et øjebliksbillede; GitHub Actions (opgave 4) overskriver den dagligt.
