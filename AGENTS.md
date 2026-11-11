@@ -44,7 +44,7 @@ vi har to søgeord og 18 virksomheder, ikke hundredvis.
     "source": "successfactors"
   }],
   "sources": [{"company": "KPMG", "label": "Tyskland", "type": "successfactors", "ok": true,
-               "listed": 25, "matched": 1, "error": null, "seconds": 2.1}],
+               "listed": 25, "matched": 1, "error": null, "seconds": 2.1, "last_ok": "2026-11-12"}],
   "not_covered": [{"company": "KPMG", "scope": "Schweiz (jobs.kpmg.ch)", "reason": "robots.txt forbyder al automatisk adgang"}]
 }
 ```
@@ -52,6 +52,9 @@ vi har to søgeord og 18 virksomheder, ikke hundredvis.
   kørsel, får `date_basis: "baseline"` og tæller ikke som nye (ellers ville alt se nyt ud på dag 1).
 - Et job, der ikke længere vises af en kilde, der **virkede**, sættes `active: false`. Fejler kilden, røres dens job ikke.
 - Inaktive job slettes efter `keep_inactive_days`.
+- `sources[].last_ok` = datoen for kildens seneste vellykkede kørsel (`null` = aldrig). Er den `null`, er næste vellykkede kørsel kildens
+  **første** (baseline). Feltet er tilføjet i opgave 1; siden ignorerer det, så `schema` er uændret. En kildes job kendes på
+  `company` + `source` (adaptertypen); fejler en kilde, røres alle virksomhedens job med samme adaptertype.
 - Siden (`site/template.html`) læser præcis disse felter. Ændrer du kontrakten, så hæv `schema` og ret siden i samme opgave.
 
 ## Regler

@@ -1,0 +1,5 @@
+# Fastlåste versioner: HTML-parsing skal give samme resultat lokalt, i CI og i produktion
+requests==2.33.1
+beautifulsoup4==4.14.3
+lxml==6.1.0
+pyyaml==6.0.3

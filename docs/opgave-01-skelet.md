@@ -57,4 +57,19 @@ En kørsel (`python -m scraper.run`), der læser `config/`, kalder adaptere, fil
 Rigtige adaptere, siden, GitHub Actions.
 
 ## Noter fra udførelsen
-_(udfyldes af Claude Code)_
+- **robots.txt-parser er skrevet selv** (`_Robots` i `common.py`) i stedet for `urllib.robotparser`, som ikke forstår jokertegn
+  (`*/apply`, `$`). Ricoh og Givaudan bruger dem (se `docs/KILDER.md`), så urllib ville have tilladt stier, der er forbudt.
+  Længste regel vinder, `Allow` vinder ved lighed. I afspilningstilstand (`SCRAPER_REPLAY`) tjekkes robots.txt ikke.
+- **Nyt felt `last_ok` i `sources[]`** (dato for seneste vellykkede kørsel). Det behøves for at afgøre, om en kørsel er kildens
+  *første* vellykkede (baseline) – det kan ikke ses af jobbene alene, hvis kilden ikke har haft match endnu. Feltet er beskrevet i
+  `AGENTS.md`; siden ignorerer det, så `schema` er stadig 1.
+- **Hvilken kilde et job stammer fra** gemmes ikke (kontrakten har kun `source` = adaptertype). Fejler en kilde, røres derfor alle
+  virksomhedens job med samme adaptertype (fx begge SuccessFactors-kilder hos KPMG Tyskland/UK). Det er den sikre side.
+- `RawJob.countries` normaliseres (`UK` → `GB`, store bogstaver) og begrænses til landene i settings. Er listen ikke tom, bruges
+  `countries_in(location)` ikke.
+- `countries_in` returnerer landene i den rækkefølge, de først står i teksten (så `country` = det første, kilden nævner).
+- `parse_date("Posted 30+ Days Ago")` giver `None`: "30+" er ikke en dato. Dd/mm/åååå (med skråstreger) understøttes ikke, fordi
+  det er tvetydigt.
+- `python -m scraper.run` skriver ikke `data/` før første rigtige kørsel; mappen er ikke committet.
+- Lokalt kørt i `.venv` (ignoreret af git). Python 3.15 lokalt – koden bruger kun standardfunktioner fra 3.10+.
+- Skrevet uden plan mode: sessionen var ikke interaktiv, så en plan kunne ikke godkendes.

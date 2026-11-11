@@ -3,7 +3,8 @@
 Sig `lav opgave N, commit ikke push` i Claude Code. Tag dem i rækkefølge – hver bygger på den forrige.
 Afkryds med dato og én linje, når opgaven er committet.
 
-- [ ] **1. Skelet, fælles kode og dataformat** – `opgave-01-skelet.md`
+- [x] **1. Skelet, fælles kode og dataformat** – `opgave-01-skelet.md`
+      → 2026-11-11: common/match/model/run + 92 tests grønne; `--dry-run` viser 22 kilder "adapter mangler" og KPMG Schweiz som ikke dækket.
 - [ ] **2. SuccessFactors-adapter (13 kilder)** – `opgave-02-successfactors.md`
 - [ ] **3. Byg siden til artefaktet** – `opgave-03-side.md`
 - [ ] **4. GitHub Actions: daglig kørsel + tests** – `opgave-04-github-actions.md`
