@@ -1,0 +1,20 @@
+# Hvad radaren leder efter. Ændres her – ikke i koden.
+
+# Ord i JOBTITLEN (ikke i opslagsteksten). Regex, store/små bogstaver er ligegyldige.
+keywords:
+  - name: SuccessFactors
+    pattern: 'success\s*-?\s*factors?'      # SuccessFactors, Success Factors, SuccessFactor
+  - name: HRIS
+    pattern: '\bHRIS\b'                     # ikke "Chris", "Christensen"
+
+# Lande (ISO 3166-1 alpha-2). Et job tages med, hvis mindst én af dets lokationer ligger i et af landene.
+countries:
+  DK: [Denmark, Danmark, DK, DNK, Copenhagen, København, Kobenhavn, Aarhus, Odense, Aalborg]
+  SE: [Sweden, Sverige, SE, SWE, Stockholm, Göteborg, Gothenburg, Malmö, Malmo, Lund]
+  FI: [Finland, Suomi, FI, FIN, Helsinki, Espoo, Vaasa, Turku, Tampere]
+  DE: [Germany, Deutschland, DE, DEU, Berlin, München, Munich, Hamburg, Frankfurt, Gütersloh, Düsseldorf]
+  GB: [United Kingdom, UK, GB, GBR, England, Scotland, Wales, Northern Ireland, Great Britain, London, Manchester, Birmingham, Leeds]
+  CH: [Switzerland, Schweiz, Suisse, Svizzera, CH, CHE, Zürich, Zurich, Basel, Geneva, Genève, Vernier, Kemptthal]
+
+# Hvor længe et inaktivt job bliver liggende i data/jobs.json, før det slettes
+keep_inactive_days: 60

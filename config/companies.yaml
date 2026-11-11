@@ -1,0 +1,88 @@
+# De 18 virksomheder og deres kilder. Undersøgt 11/11-2026 – se docs/KILDER.md for detaljer og robots.txt.
+# `type` vælger adapteren i scraper/adapters/<type>.py. `label` vises i kildestatus, når en virksomhed har flere kilder.
+# `type: none` = kan/må ikke scrapes; vises som "Ikke dækket" på siden.
+
+companies:
+  - name: Ambu
+    sources:
+      - {type: successfactors, url: https://jobs.ambu.com}
+
+  - name: Lundbeck
+    sources:
+      - {type: successfactors, url: https://jobs.lundbeck}
+
+  - name: Novo Nordisk
+    sources:
+      - {type: successfactors, url: https://careers.novonordisk.com}
+
+  - name: Wärtsilä
+    sources:
+      - {type: successfactors, url: https://careers.wartsila.com}
+
+  - name: Demant
+    sources:
+      - {type: successfactors, url: https://careers.demant.com}
+
+  - name: Ericsson
+    sources:
+      - {type: eightfold, url: https://jobs.ericsson.com, domain: ericsson.com}
+
+  - name: Nordea
+    sources:
+      - {type: nordea, url: https://www.nordea.com/en/api/jobs-list}
+
+  - name: Søstrene Grene
+    sources:
+      - {type: successfactors, url: https://career.sostrenegrene.com}
+
+  - name: Bygma
+    sources:
+      - {type: successfactors, url: https://jobs.bygma.dk}
+
+  - name: Bertelsmann
+    sources:
+      # Fælles portal for hele koncernen (Arvato, Penguin Random House, RTL, BMG …). Stier som /ARVATO/job/…
+      - {type: successfactors, url: https://jobsearch.createyourowncareer.com}
+
+  - name: Ricoh Europe
+    sources:
+      - {type: phenom, url: https://careersatricoh.com/gb/en}
+
+  - name: ZF Lifetec
+    sources:
+      # ZF LIFETEC (airbags/seler, udskilt fra ZF). Egen side, ikke jobs.zf.com.
+      - {type: strapi_zf, url: https://careers-strapi.zf-lifetec.com/api/jobs, job_base: https://careers.zf-lifetec.com/jobs}
+
+  - name: KPMG
+    sources:
+      - {type: hrmanager, customer: kpmg, label: Danmark}
+      - {type: oracle, url: https://iabdgs.fa.ocs.oraclecloud.com, site: CX_1002, label: Finland}
+      - {type: jobylon, company_id: 1532, label: Sverige}
+      - {type: successfactors, url: https://jobs.kpmg.de, label: Tyskland}
+      - {type: successfactors, url: https://experienced.kpmgcareers.co.uk, label: UK}
+      - type: none
+        label: Schweiz
+        url: https://jobs.kpmg.ch
+        note: robots.txt forbyder al automatisk adgang (User-agent * / Disallow /)
+
+  - name: DSV
+    sources:
+      - {type: successfactors, url: https://jobs.dsv.com}
+
+  - name: Coloplast
+    sources:
+      - {type: successfactors, url: https://careers.coloplast.com}
+
+  - name: Givaudan
+    sources:
+      # Brug /global/en – robots.txt forbyder */gb/en
+      - {type: phenom, url: https://careers.givaudan.com/global/en}
+
+  - name: Swiss Re
+    sources:
+      - {type: successfactors, url: https://careers.swissre.com}
+
+  - name: Munich Re
+    sources:
+      # Radancy. robots.txt forbyder /search-jobs/ – brug kun sitemap + jobsider
+      - {type: radancy_sitemap, url: https://careers.munichre.com, sitemap: https://careers.munichre.com/en/sitemap.xml}

@@ -1,0 +1,292 @@
+<title>HRIS-jobradar</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Schibsted+Grotesk:wght@600;700&display=swap">
+<style>
+/* Layout: én kolonne – hoved med periodevælger og tal, filterlinje, tabel (kort på mobil), kildestatus nederst. */
+:root {
+  --bg: #f5f7f8;
+  --surface: #ffffff;
+  --fg: #16232a;
+  --muted: #5b6b73;
+  --line: #dde4e7;
+  --accent: #0b5d6b;
+  --accent-soft: #e2f0f2;
+  --ok: #2f7d4f;
+  --warn: #a2631a;
+  --bad: #b23a3a;
+  --font-display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1619; --surface: #162126; --fg: #e3ecef; --muted: #93a5ad; --line: #26353b;
+    --accent: #63c3d1; --accent-soft: #173238; --ok: #6cc28f; --warn: #e0a65a; --bad: #ec8080;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1619; --surface: #162126; --fg: #e3ecef; --muted: #93a5ad; --line: #26353b;
+  --accent: #63c3d1; --accent-soft: #173238; --ok: #6cc28f; --warn: #e0a65a; --bad: #ec8080;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 15px; line-height: 1.5;
+}
+.wrap {
+  max-width: 1080px; margin: 0 auto;
+  padding-block: 28px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 20px;
+}
+header { display: grid; gap: 6px; }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(26px, 4vw, 34px); line-height: 1.15; margin: 0; text-wrap: balance; }
+.lede { margin: 0; color: var(--muted); max-width: 65ch; }
+.lede b { color: var(--fg); font-weight: 600; }
+
+.periods { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.period {
+  font: inherit; text-align: left; cursor: pointer;
+  background: var(--surface); color: var(--fg);
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 12px 14px; display: grid; gap: 2px;
+}
+.period .n { font-family: var(--font-display); font-weight: 700; font-size: 28px; line-height: 1; font-variant-numeric: tabular-nums; }
+.period .l { font-size: 13px; color: var(--muted); }
+.period[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent); }
+.period[aria-pressed="true"] .n { color: var(--accent); }
+.period:focus-visible, .chip:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.filters input, .filters select {
+  font: inherit; color: var(--fg); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; min-width: 0;
+}
+.filters input { flex: 1 1 220px; }
+.filters select { flex: 0 1 200px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font-family: var(--font-mono); font-size: 13px; cursor: pointer;
+  background: transparent; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px;
+}
+.chip[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); min-width: 0; }
+.tablebox { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--font-mono); font-weight: 500; font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td.title a { color: var(--fg); font-weight: 600; text-decoration: none; }
+td.title a:hover { color: var(--accent); text-decoration: underline; }
+td.title .loc { display: block; font-size: 13px; color: var(--muted); font-weight: 400; }
+.cc { font-family: var(--font-mono); font-size: 12px; border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; white-space: nowrap; }
+td.date { font-family: var(--font-mono); font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+td.date .new { color: var(--accent); font-weight: 500; }
+td.date .est { color: var(--muted); }
+td.open a { color: var(--accent); white-space: nowrap; text-decoration: none; font-weight: 500; }
+td.open a:hover { text-decoration: underline; }
+.empty { padding: 36px 20px; text-align: center; color: var(--muted); }
+.empty strong { display: block; color: var(--fg); font-family: var(--font-display); font-size: 18px; margin-bottom: 4px; }
+
+.status { display: grid; gap: 10px; font-size: 14px; color: var(--muted); }
+.status summary { cursor: pointer; color: var(--fg); }
+.status ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+.dot.ok { background: var(--ok); } .dot.warn { background: var(--warn); } .dot.bad { background: var(--bad); }
+.foot { font-size: 13px; color: var(--muted); }
+
+@media (max-width: 640px) {
+  .periods { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  table, thead, tbody, tr, td { display: block; }
+  thead { display: none; }
+  tr { padding: 12px 14px; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; }
+  tr:last-child { border-bottom: 0; }
+  td { padding: 0; border: 0; }
+  td.title { grid-column: 1 / -1; }
+  td.company { grid-column: 1; }
+  td.country { grid-column: 2; grid-row: 2; justify-self: end; }
+  td.date { grid-column: 1; }
+  td.open { grid-column: 2; justify-self: end; }
+}
+@media (prefers-reduced-motion: no-preference) { .period, .chip { transition: background .15s, border-color .15s; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow" id="kw">SuccessFactors · HRIS</div>
+    <h1>HRIS-jobradar</h1>
+    <p class="lede" id="lede">Nye stillinger med <b>SuccessFactors</b> eller <b>HRIS</b> i titlen hos 18 virksomheder i Danmark, Sverige, Finland, Tyskland, Storbritannien og Schweiz.</p>
+  </header>
+
+  <div class="periods" role="group" aria-label="Periode">
+    <button class="period" type="button" id="p-0" data-days="0" aria-pressed="false"><span class="n">0</span><span class="l">Slået op i dag</span></button>
+    <button class="period" type="button" id="p-7" data-days="7" aria-pressed="true"><span class="n">0</span><span class="l">Seneste 7 dage</span></button>
+    <button class="period" type="button" id="p-14" data-days="14" aria-pressed="false"><span class="n">0</span><span class="l">Seneste 14 dage</span></button>
+    <button class="period" type="button" id="p-all" data-days="all" aria-pressed="false"><span class="n">0</span><span class="l">Alle aktive</span></button>
+  </div>
+
+  <div class="filters">
+    <input id="q" type="search" placeholder="Søg i titel eller virksomhed" aria-label="Søg">
+    <select id="company" aria-label="Virksomhed"><option value="">Alle virksomheder</option></select>
+    <div class="chips" id="countries" role="group" aria-label="Lande"></div>
+  </div>
+
+  <section class="panel">
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Job titel</th><th>Virksomhed</th><th>Land</th><th>Slået op</th><th>Opslag</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="empty" id="empty" hidden></div>
+  </section>
+
+  <section class="status" id="status"></section>
+  <p class="foot" id="foot"></p>
+</div>
+
+<script type="application/json" id="jobdata">{"generated_at": null, "keywords": ["SuccessFactors", "HRIS"], "countries": ["DK", "SE", "FI", "DE", "GB", "CH"], "jobs": [], "sources": [], "not_covered": [{"company": "KPMG", "scope": "Schweiz (jobs.kpmg.ch)", "reason": "robots.txt forbyder al automatisk adgang"}]}</script>
+<script>
+(function () {
+  var DATA = {};
+  try { DATA = JSON.parse(document.getElementById("jobdata").textContent) || {}; } catch (e) { DATA = {}; }
+  var jobs = (DATA.jobs || []).filter(function (j) { return j.active !== false; });
+  var NAMES = { DK: "Danmark", SE: "Sverige", FI: "Finland", DE: "Tyskland", GB: "Storbritannien", CH: "Schweiz" };
+  var LABEL = { GB: "UK" };
+  var MONTHS = ["jan.", "feb.", "mar.", "apr.", "maj", "jun.", "jul.", "aug.", "sep.", "okt.", "nov.", "dec."];
+
+  function todayStr() { var d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+  function dayNum(s) { var p = s.split("-"); return Date.UTC(+p[0], +p[1] - 1, +p[2]) / 864e5; }
+  var TODAY = dayNum(todayStr());
+  function jobDate(j) {
+    if (j.posted) return j.posted.slice(0, 10);
+    if (j.first_seen && j.date_basis !== "baseline") return j.first_seen.slice(0, 10);
+    return null;
+  }
+  function age(j) { var d = jobDate(j); return d ? TODAY - dayNum(d) : null; }
+  function inPeriod(j, days) {
+    if (days === "all") return true;
+    var a = age(j); if (a === null) return false;
+    return days === 0 ? a <= 0 : a < days;
+  }
+  function fmt(s) { var p = s.split("-"); return (+p[2]) + ". " + MONTHS[+p[1] - 1] + " " + p[0]; }
+
+  var state = { days: 7, q: "", company: "", countries: {} };
+  try { var saved = localStorage.getItem("hrisradar-days"); if (saved) state.days = saved === "all" ? "all" : +saved; } catch (e) {}
+
+  var countryList = (DATA.countries && DATA.countries.length) ? DATA.countries : ["DK", "SE", "FI", "DE", "GB", "CH"];
+  var chipBox = document.getElementById("countries");
+  countryList.forEach(function (c) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.id = "c-" + c; b.textContent = LABEL[c] || c;
+    b.title = NAMES[c] || c; b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function () { state.countries[c] = !state.countries[c]; b.setAttribute("aria-pressed", String(!!state.countries[c])); render(); });
+    chipBox.appendChild(b);
+  });
+  var sel = document.getElementById("company");
+  var companies = {};
+  (DATA.sources || []).forEach(function (s) { if (s.company) companies[s.company] = 1; });
+  jobs.forEach(function (j) { companies[j.company] = 1; });
+  Object.keys(companies).sort(function (a, b) { return a.localeCompare(b, "da"); }).forEach(function (c) {
+    var o = document.createElement("option"); o.value = c; o.textContent = c; sel.appendChild(o);
+  });
+
+  function matchesFilters(j) {
+    var anyC = Object.keys(state.countries).some(function (k) { return state.countries[k]; });
+    if (anyC) {
+      var cs = j.countries && j.countries.length ? j.countries : [j.country];
+      if (!cs.some(function (c) { return state.countries[c]; })) return false;
+    }
+    if (state.company && j.company !== state.company) return false;
+    if (state.q) { var hay = (j.title + " " + j.company + " " + (j.location || "")).toLowerCase(); if (hay.indexOf(state.q) < 0) return false; }
+    return true;
+  }
+
+  function render() {
+    var base = jobs.filter(matchesFilters);
+    document.querySelectorAll(".period").forEach(function (b) {
+      var d = b.dataset.days === "all" ? "all" : +b.dataset.days;
+      b.querySelector(".n").textContent = base.filter(function (j) { return inPeriod(j, d); }).length;
+      b.setAttribute("aria-pressed", String(d === state.days));
+    });
+    var list = base.filter(function (j) { return inPeriod(j, state.days); });
+    list.sort(function (a, b) { var x = jobDate(a) || "", y = jobDate(b) || ""; return x < y ? 1 : x > y ? -1 : a.company.localeCompare(b.company, "da"); });
+    var tb = document.getElementById("rows"); tb.textContent = "";
+    list.forEach(function (j) {
+      var tr = document.createElement("tr");
+      var t = document.createElement("td"); t.className = "title";
+      var a = document.createElement("a"); a.href = j.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = j.title; t.appendChild(a);
+      if (j.location) { var l = document.createElement("span"); l.className = "loc"; l.textContent = j.location; t.appendChild(l); }
+      var c = document.createElement("td"); c.className = "company"; c.textContent = j.company;
+      var k = document.createElement("td"); k.className = "country";
+      var cs = j.countries && j.countries.length ? j.countries : [j.country];
+      cs.filter(Boolean).forEach(function (code) { var s = document.createElement("span"); s.className = "cc"; s.title = NAMES[code] || code; s.textContent = LABEL[code] || code; k.appendChild(s); k.appendChild(document.createTextNode(" ")); });
+      var d = document.createElement("td"); d.className = "date";
+      var jd = jobDate(j), ag = age(j), sp = document.createElement("span");
+      if (!jd) { sp.className = "est"; sp.textContent = "ukendt"; }
+      else { sp.textContent = ag <= 0 ? "i dag" : ag === 1 ? "i går" : fmt(jd); if (ag <= 1) sp.className = "new"; if (!j.posted) { sp.className = "est"; sp.title = "Kilden oplyser ikke dato – vist er den dag, radaren første gang så opslaget"; } }
+      d.appendChild(sp);
+      var o = document.createElement("td"); o.className = "open";
+      var oa = document.createElement("a"); oa.href = j.url; oa.target = "_blank"; oa.rel = "noopener"; oa.textContent = "Åbn opslag ↗"; o.appendChild(oa);
+      [t, c, k, d, o].forEach(function (x) { tr.appendChild(x); });
+      tb.appendChild(tr);
+    });
+    var empty = document.getElementById("empty");
+    var table = document.querySelector("table");
+    if (!DATA.generated_at) {
+      empty.innerHTML = "<strong>Ingen data endnu</strong>Radaren fyldes, når scraperen har kørt første gang på GitHub.";
+      empty.hidden = false; table.hidden = true;
+    } else if (!list.length) {
+      var label = state.days === 0 ? "i dag" : state.days === "all" ? "lige nu" : "de seneste " + state.days + " dage";
+      empty.innerHTML = "<strong>Ingen nye stillinger " + label + "</strong>Prøv en længere periode, eller ryd søgning og filtre.";
+      empty.hidden = false; table.hidden = true;
+    } else { empty.hidden = true; table.hidden = false; }
+    try { localStorage.setItem("hrisradar-days", String(state.days)); } catch (e) {}
+  }
+
+  document.querySelectorAll(".period").forEach(function (b) {
+    b.addEventListener("click", function () { state.days = b.dataset.days === "all" ? "all" : +b.dataset.days; render(); });
+  });
+  document.getElementById("q").addEventListener("input", function (e) { state.q = e.target.value.trim().toLowerCase(); render(); });
+  sel.addEventListener("change", function (e) { state.company = e.target.value; render(); });
+
+  // Kildestatus og hvad der ikke er dækket
+  var st = document.getElementById("status");
+  var src = DATA.sources || [];
+  if (src.length) {
+    var bad = src.filter(function (s) { return !s.ok; });
+    var det = document.createElement("details");
+    var sum = document.createElement("summary");
+    sum.innerHTML = '<span class="dot ' + (bad.length ? "warn" : "ok") + '"></span>' + (src.length - bad.length) + " af " + src.length + " kilder svarede ved seneste kørsel";
+    det.appendChild(sum);
+    var ul = document.createElement("ul");
+    src.forEach(function (s) {
+      var li = document.createElement("li");
+      li.innerHTML = '<span class="dot ' + (s.ok ? "ok" : "bad") + '"></span>';
+      li.appendChild(document.createTextNode(s.company + (s.label ? " (" + s.label + ")" : "") + (s.ok ? " – " + (s.matched || 0) + " match" : " – fejl: " + (s.error || "ukendt"))));
+      ul.appendChild(li);
+    });
+    det.appendChild(ul); st.appendChild(det);
+  }
+  (DATA.not_covered || []).forEach(function (n) {
+    var p = document.createElement("div");
+    p.innerHTML = '<span class="dot bad"></span>';
+    p.appendChild(document.createTextNode("Ikke dækket: " + n.company + " " + n.scope + " – " + n.reason + "."));
+    st.appendChild(p);
+  });
+  var foot = document.getElementById("foot");
+  foot.textContent = DATA.generated_at
+    ? "Data opdateret " + new Date(DATA.generated_at).toLocaleString("da-DK", { dateStyle: "long", timeStyle: "short" }) + ". Dato er opslagets egen dato; mangler den, vises dagen radaren første gang så stillingen."
+    : "Opdateres automatisk hver morgen.";
+  render();
+})();
+</script>
