@@ -1,4 +1,4 @@
-ok   Ambu [successfactors]  listed=151 matched=0
+ok   Ambu [successfactors]  listed=152 matched=0
 ok   Lundbeck [successfactors]  listed=10 matched=0
 ok   Novo Nordisk [successfactors]  listed=0 matched=0
 ok   Wärtsilä [successfactors]  listed=10 matched=0
@@ -8,17 +8,17 @@ ok   Nordea [nordea]  listed=11 matched=0
 ok   Søstrene Grene [successfactors]  listed=0 matched=0
 ok   Bygma [successfactors]  listed=10 matched=0
 ok   Bertelsmann [successfactors]  listed=38 matched=0
-ok   Ricoh Europe [phenom]  listed=112 matched=1
+ok   Ricoh Europe [phenom]  listed=113 matched=1
 ok   ZF Lifetec [strapi_zf]  listed=1 matched=0
 ok   KPMG Danmark [hrmanager]  listed=14 matched=0
 ok   KPMG Finland [oracle]  listed=0 matched=0
 ok   KPMG Sverige [jobylon]  listed=10 matched=0
-ok   KPMG Tyskland [successfactors]  listed=370 matched=1
-ok   KPMG UK [successfactors]  listed=7 matched=0
-ok   DSV [successfactors]  listed=51 matched=0
-ok   Coloplast [successfactors]  listed=285 matched=0
-ok   Givaudan [phenom]  listed=329 matched=0
-ok   Swiss Re [successfactors]  listed=202 matched=0
+ok   KPMG Tyskland [successfactors]  listed=369 matched=1
+ok   KPMG UK [successfactors]  listed=6 matched=0
+ok   DSV [successfactors]  listed=50 matched=0
+ok   Coloplast [successfactors]  listed=281 matched=0
+ok   Givaudan [phenom]  listed=338 matched=0
+ok   Swiss Re [successfactors]  listed=198 matched=0
 ok   Munich Re [radancy_sitemap]  listed=0 matched=0
 ikke dækket  KPMG – Schweiz (jobs.kpmg.ch): robots.txt forbyder al automatisk adgang (User-agent * / Disallow /)
 22 kilder kørt, 22 ok; 3 job i alt, 2 aktive
