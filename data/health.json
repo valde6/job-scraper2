@@ -26,6 +26,11 @@
     "date": "2026-11-15",
     "ok": true,
     "listed": 152
+   },
+   {
+    "date": "2026-11-16",
+    "ok": true,
+    "listed": 154
    }
   ],
   "Lundbeck": [
@@ -51,6 +56,11 @@
    },
    {
     "date": "2026-11-15",
+    "ok": true,
+    "listed": 10
+   },
+   {
+    "date": "2026-11-16",
     "ok": true,
     "listed": 10
    }
@@ -80,6 +90,11 @@
     "date": "2026-11-15",
     "ok": true,
     "listed": 0
+   },
+   {
+    "date": "2026-11-16",
+    "ok": true,
+    "listed": 1
    }
   ],
   "Wärtsilä": [
@@ -105,6 +120,11 @@
    },
    {
     "date": "2026-11-15",
+    "ok": true,
+    "listed": 10
+   },
+   {
+    "date": "2026-11-16",
     "ok": true,
     "listed": 10
    }
@@ -134,6 +154,11 @@
     "date": "2026-11-15",
     "ok": true,
     "listed": 7
+   },
+   {
+    "date": "2026-11-16",
+    "ok": true,
+    "listed": 7
    }
   ],
   "Ericsson": [
@@ -161,6 +186,11 @@
     "date": "2026-11-15",
     "ok": true,
     "listed": 8
+   },
+   {
+    "date": "2026-11-16",
+    "ok": true,
+    "listed": 7
    }
   ],
   "Nordea": [
@@ -188,6 +218,11 @@
     "date": "2026-11-15",
     "ok": true,
     "listed": 11
+   },
+   {
+    "date": "2026-11-16",
+    "ok": true,
+    "listed": 10
    }
   ],
   "Søstrene Grene": [
@@ -213,6 +248,11 @@
    },
    {
     "date": "2026-11-15",
+    "ok": true,
+    "listed": 0
+   },
+   {
+    "date": "2026-11-16",
     "ok": true,
     "listed": 0
    }
@@ -242,6 +282,11 @@
     "date": "2026-11-15",
     "ok": true,
     "listed": 10
+   },
+   {
+    "date": "2026-11-16",
+    "ok": true,
+    "listed": 10
    }
   ],
   "Bertelsmann": [
@@ -267,6 +312,11 @@
    },
    {
     "date": "2026-11-15",
+    "ok": true,
+    "listed": 38
+   },
+   {
+    "date": "2026-11-16",
     "ok": true,
     "listed": 38
    }
@@ -296,6 +346,11 @@
     "date": "2026-11-15",
     "ok": true,
     "listed": 113
+   },
+   {
+    "date": "2026-11-16",
+    "ok": true,
+    "listed": 115
    }
   ],
   "ZF Lifetec": [
@@ -321,6 +376,11 @@
    },
    {
     "date": "2026-11-15",
+    "ok": true,
+    "listed": 1
+   },
+   {
+    "date": "2026-11-16",
     "ok": true,
     "listed": 1
    }
@@ -350,6 +410,11 @@
     "date": "2026-11-15",
     "ok": true,
     "listed": 14
+   },
+   {
+    "date": "2026-11-16",
+    "ok": true,
+    "listed": 9
    }
   ],
   "KPMG – Finland": [
@@ -375,6 +440,11 @@
    },
    {
     "date": "2026-11-15",
+    "ok": true,
+    "listed": 0
+   },
+   {
+    "date": "2026-11-16",
     "ok": true,
     "listed": 0
    }
@@ -404,6 +474,11 @@
     "date": "2026-11-15",
     "ok": true,
     "listed": 10
+   },
+   {
+    "date": "2026-11-16",
+    "ok": true,
+    "listed": 10
    }
   ],
   "KPMG – Tyskland": [
@@ -431,6 +506,11 @@
     "date": "2026-11-15",
     "ok": true,
     "listed": 369
+   },
+   {
+    "date": "2026-11-16",
+    "ok": true,
+    "listed": 368
    }
   ],
   "KPMG – UK": [
@@ -456,6 +536,11 @@
    },
    {
     "date": "2026-11-15",
+    "ok": true,
+    "listed": 6
+   },
+   {
+    "date": "2026-11-16",
     "ok": true,
     "listed": 6
    }
@@ -485,6 +570,11 @@
     "date": "2026-11-15",
     "ok": true,
     "listed": 50
+   },
+   {
+    "date": "2026-11-16",
+    "ok": true,
+    "listed": 49
    }
   ],
   "Coloplast": [
@@ -512,6 +602,11 @@
     "date": "2026-11-15",
     "ok": true,
     "listed": 281
+   },
+   {
+    "date": "2026-11-16",
+    "ok": true,
+    "listed": 277
    }
   ],
   "Givaudan": [
@@ -539,6 +634,11 @@
     "date": "2026-11-15",
     "ok": true,
     "listed": 340
+   },
+   {
+    "date": "2026-11-16",
+    "ok": true,
+    "listed": 338
    }
   ],
   "Swiss Re": [
@@ -566,6 +666,11 @@
     "date": "2026-11-15",
     "ok": true,
     "listed": 198
+   },
+   {
+    "date": "2026-11-16",
+    "ok": true,
+    "listed": 195
    }
   ],
   "Munich Re": [
@@ -591,6 +696,11 @@
    },
    {
     "date": "2026-11-15",
+    "ok": true,
+    "listed": 0
+   },
+   {
+    "date": "2026-11-16",
     "ok": true,
     "listed": 0
    }
