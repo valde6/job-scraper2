@@ -2,113 +2,152 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Schibsted+Grotesk:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Questrial&display=swap">
 <style>
-/* Layout: én kolonne – hoved med periodevælger og tal, filterlinje, tabel (kort på mobil), kildestatus nederst. */
+/* Layout: hvid hero med femkant-grafik til højre, periodekort, filterlinje, tabel (kort på mobil), kildestatus nederst.
+   Stil: Kanit-overskrifter, Questrial-brødtekst, marineblå + rød + turkis, afrundede femkanter som motiv. */
 :root {
-  --bg: #f5f7f8;
+  --bg: #ffffff;
+  --band: #f7f7f8;
   --surface: #ffffff;
-  --fg: #16232a;
-  --muted: #5b6b73;
-  --line: #dde4e7;
-  --accent: #0b5d6b;
-  --accent-soft: #e2f0f2;
+  --fg: #333333;
+  --ink: #052350;          /* marineblå – overskrifter, valgt tilstand */
+  --muted: #5f6673;
+  --line: #e3e5ea;
+  --red: #b71414;          /* rød – punktum, links, markeringer */
+  --teal: #0fb4c8;         /* turkis – kun grafik */
+  --teal-text: #0a7d8c;    /* turkis til tekst (læsbar kontrast) */
+  --ink-soft: #eef2f8;
   --ok: #2f7d4f;
-  --warn: #a2631a;
-  --bad: #b23a3a;
-  --font-display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --radius: 10px;
+  --warn: #b26a12;
+  --bad: #b71414;
+  --on-ink: #ffffff;
+  --shape: #052350;        /* hero-femkant og tabelhoved */
+  --on-shape: #ffffff;
+  --font-display: "Kanit", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Questrial", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --radius: 9px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0f1619; --surface: #162126; --fg: #e3ecef; --muted: #93a5ad; --line: #26353b;
-    --accent: #63c3d1; --accent-soft: #173238; --ok: #6cc28f; --warn: #e0a65a; --bad: #ec8080;
+    --bg: #04142e; --band: #071d40; --surface: #0a2450; --fg: #e6ebf3; --ink: #ffffff; --muted: #a2afc4; --line: #1b3765;
+    --red: #ff6b63; --teal: #3fd3e3; --teal-text: #5fd9e7; --ink-soft: #12336a; --ok: #6cc28f; --warn: #e6a95a; --bad: #ff6b63;
+    --on-ink: #052350; --shape: #0f3270; --on-shape: #ffffff;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0f1619; --surface: #162126; --fg: #e3ecef; --muted: #93a5ad; --line: #26353b;
-  --accent: #63c3d1; --accent-soft: #173238; --ok: #6cc28f; --warn: #e0a65a; --bad: #ec8080;
+  --bg: #04142e; --band: #071d40; --surface: #0a2450; --fg: #e6ebf3; --ink: #ffffff; --muted: #a2afc4; --line: #1b3765;
+  --red: #ff6b63; --teal: #3fd3e3; --teal-text: #5fd9e7; --ink-soft: #12336a; --ok: #6cc28f; --warn: #e6a95a; --bad: #ff6b63;
+  --on-ink: #052350; --shape: #0f3270; --on-shape: #ffffff;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
 body {
-  background: var(--bg); color: var(--fg);
-  font-family: var(--font-body); font-size: 15px; line-height: 1.5;
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 15.5px; line-height: 1.55;
 }
-.wrap {
-  max-width: 1080px; margin: 0 auto;
-  padding-block: 28px 48px;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-  display: grid; gap: 20px;
+.inner {
+  max-width: 1120px; margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
 }
-header { display: grid; gap: 6px; }
-.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
-h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(26px, 4vw, 34px); line-height: 1.15; margin: 0; text-wrap: balance; }
-.lede { margin: 0; color: var(--muted); max-width: 65ch; }
-.lede b { color: var(--fg); font-weight: 600; }
 
-.periods { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+/* Hero */
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+.hero .inner { position: relative; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: center; gap: 24px; padding-block: 44px 40px; }
+.hero-text { display: grid; gap: 10px; position: relative; z-index: 1; }
+.eyebrow { font-family: var(--font-body); font-size: 15px; color: var(--teal-text); }
+h1 { font-family: var(--font-display); font-weight: 500; text-transform: uppercase; letter-spacing: .01em; line-height: .98; margin: 4px 0 6px; color: var(--ink); font-size: clamp(40px, 6.4vw, 72px); }
+h1 span { display: block; }
+h1 .r { color: var(--red); }
+.tagline { font-family: var(--font-display); font-weight: 400; font-size: clamp(20px, 2.4vw, 26px); color: var(--fg); margin: 0; line-height: 1.25; }
+.tagline i { font-style: normal; color: var(--red); }
+.lede { margin: 0; color: var(--muted); max-width: 60ch; }
+.lede b { color: var(--fg); font-weight: 400; border-bottom: 2px solid var(--teal); }
+.hero-art { justify-self: end; width: 100%; max-width: 380px; aspect-ratio: 1; position: relative; }
+.hero-art svg { width: 100%; height: 100%; display: block; overflow: visible; }
+
+/* Indhold */
+.wrap { display: grid; gap: 22px; padding-block: 34px 56px; }
+.section-label { font-size: 14px; color: var(--teal-text); margin: 0 0 -8px; }
+
+.periods { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
 .period {
-  font: inherit; text-align: left; cursor: pointer;
+  font: inherit; text-align: left; cursor: pointer; position: relative;
   background: var(--surface); color: var(--fg);
   border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 12px 14px; display: grid; gap: 2px;
+  padding: 16px 16px 16px 22px; display: grid; gap: 6px; overflow: hidden;
 }
-.period .n { font-family: var(--font-display); font-weight: 700; font-size: 28px; line-height: 1; font-variant-numeric: tabular-nums; }
-.period .l { font-size: 13px; color: var(--muted); }
-.period[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent); }
-.period[aria-pressed="true"] .n { color: var(--accent); }
-.period:focus-visible, .chip:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.period::before { content: ""; position: absolute; left: 10px; top: 14px; bottom: 14px; border-left: 2px dashed var(--teal); }
+.period .n { font-family: var(--font-display); font-weight: 400; font-size: 40px; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+.period .l { font-family: var(--font-display); font-weight: 400; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.period:hover { border-color: var(--ink); }
+.period[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--on-ink); }
+.period[aria-pressed="true"]::before { border-left-color: var(--red); border-left-style: solid; }
+.period[aria-pressed="true"] .n, .period[aria-pressed="true"] .l { color: var(--on-ink); }
+.period[aria-pressed="true"]::after {
+  content: ""; position: absolute; right: -14px; bottom: -14px; width: 56px; height: 56px; background: var(--red);
+  clip-path: polygon(50% 0, 100% 38%, 82% 100%, 18% 100%, 0 38%); opacity: .95;
+}
+.period:focus-visible, .chip:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
 
-.filters { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.filters { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; padding: 14px; background: var(--band); border-radius: var(--radius); }
 .filters input, .filters select {
   font: inherit; color: var(--fg); background: var(--surface);
-  border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; min-width: 0;
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px; min-width: 0;
 }
-.filters input { flex: 1 1 220px; }
-.filters select { flex: 0 1 200px; }
+.filters input { flex: 1 1 240px; }
+.filters select { flex: 0 1 220px; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .chip {
-  font-family: var(--font-mono); font-size: 13px; cursor: pointer;
-  background: transparent; color: var(--muted);
-  border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px;
+  font-family: var(--font-display); font-weight: 400; font-size: 13px; letter-spacing: .05em; cursor: pointer;
+  background: var(--surface); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px;
 }
-.chip[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+.chip:hover { border-color: var(--ink); }
+.chip[aria-pressed="true"] { color: var(--on-ink); border-color: var(--ink); background: var(--ink); }
 
-.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); min-width: 0; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); min-width: 0; overflow: hidden; }
 .tablebox { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; }
-th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
-th { font-family: var(--font-mono); font-weight: 500; font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+th, td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+thead th { background: var(--shape); color: var(--on-shape); font-family: var(--font-display); font-weight: 400; font-size: 13px; letter-spacing: .07em; text-transform: uppercase; white-space: nowrap; border-bottom: 0; }
+tbody tr:hover { background: var(--band); }
 tr:last-child td { border-bottom: 0; }
-td.title a { color: var(--fg); font-weight: 600; text-decoration: none; }
-td.title a:hover { color: var(--accent); text-decoration: underline; }
-td.title .loc { display: block; font-size: 13px; color: var(--muted); font-weight: 400; }
-.cc { font-family: var(--font-mono); font-size: 12px; border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; white-space: nowrap; }
-td.date { font-family: var(--font-mono); font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
-td.date .new { color: var(--accent); font-weight: 500; }
+td.title a { font-family: var(--font-display); font-weight: 400; font-size: 17px; line-height: 1.3; color: var(--ink); text-decoration: none; }
+td.title a:hover { color: var(--red); }
+td.title .loc { display: block; margin-top: 2px; font-size: 13.5px; color: var(--muted); }
+td.company { color: var(--fg); }
+.cc { font-family: var(--font-display); font-size: 12px; letter-spacing: .05em; color: var(--ink); background: var(--ink-soft); border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+td.date { font-size: 14px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+td.date .new { color: var(--red); font-family: var(--font-display); font-weight: 500; }
 td.date .est { color: var(--muted); }
-td.open a { color: var(--accent); white-space: nowrap; text-decoration: none; font-weight: 500; }
-td.open a:hover { text-decoration: underline; }
-.empty { padding: 36px 20px; text-align: center; color: var(--muted); }
-.empty strong { display: block; color: var(--fg); font-family: var(--font-display); font-size: 18px; margin-bottom: 4px; }
+td.open a { color: var(--ink); white-space: nowrap; text-decoration: none; font-family: var(--font-display); font-weight: 500; font-size: 14px; padding-bottom: 3px; border-bottom: 2px solid var(--red); }
+td.open a:hover { color: var(--red); }
+.empty { padding: 48px 20px; text-align: center; color: var(--muted); }
+.empty strong { display: block; color: var(--ink); font-family: var(--font-display); font-weight: 400; font-size: 22px; margin-bottom: 6px; }
+.empty strong::after { content: "."; color: var(--red); }
 
-.status { display: grid; gap: 10px; font-size: 14px; color: var(--muted); }
-.status summary { cursor: pointer; color: var(--fg); }
-.status ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; }
-.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+.status { display: grid; gap: 10px; font-size: 14px; color: var(--muted); padding: 18px 20px; background: var(--band); border-radius: var(--radius); }
+.status:empty { display: none; }
+.status summary { cursor: pointer; color: var(--ink); font-family: var(--font-display); font-weight: 400; font-size: 15px; }
+.status summary::marker { color: var(--red); }
+.status ul { margin: 10px 0 0; padding-left: 18px; display: grid; gap: 5px; list-style: none; padding-left: 4px; }
+.dot { display: inline-block; width: 9px; height: 9px; margin-right: 8px; vertical-align: 0; clip-path: polygon(50% 0, 100% 38%, 82% 100%, 18% 100%, 0 38%); }
 .dot.ok { background: var(--ok); } .dot.warn { background: var(--warn); } .dot.bad { background: var(--bad); }
-.foot { font-size: 13px; color: var(--muted); }
+.foot { font-size: 13px; color: var(--muted); margin: 0; padding-top: 18px; border-top: 1px solid var(--line); }
 
+@media (max-width: 820px) {
+  .hero .inner { grid-template-columns: 1fr; padding-block: 32px 28px; }
+  .hero-art { position: absolute; right: -90px; top: -30px; width: 260px; max-width: none; opacity: .18; z-index: 0; }
+}
 @media (max-width: 640px) {
-  .periods { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .periods { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .period .n { font-size: 32px; }
   table, thead, tbody, tr, td { display: block; }
   thead { display: none; }
-  tr { padding: 12px 14px; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; }
+  tr { padding: 14px 16px; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto; gap: 6px 10px; }
   tr:last-child { border-bottom: 0; }
   td { padding: 0; border: 0; }
   td.title { grid-column: 1 / -1; }
@@ -117,16 +156,41 @@ td.open a:hover { text-decoration: underline; }
   td.date { grid-column: 1; }
   td.open { grid-column: 2; justify-self: end; }
 }
-@media (prefers-reduced-motion: no-preference) { .period, .chip { transition: background .15s, border-color .15s; } }
+@media (prefers-reduced-motion: no-preference) {
+  .period, .chip, td.title a, td.open a, tbody tr { transition: background .15s, border-color .15s, color .15s; }
+  .hero-art .float { animation: float 7s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes float { 50% { transform: translateY(-8px) rotate(6deg); } }
+}
 </style>
 
-<div class="wrap">
-  <header>
-    <div class="eyebrow" id="kw">SuccessFactors · HRIS</div>
-    <h1>HRIS-jobradar</h1>
-    <p class="lede" id="lede">Nye stillinger med <b>SuccessFactors</b> eller <b>HRIS</b> i titlen hos 18 virksomheder i Danmark, Sverige, Finland, Tyskland, Storbritannien og Schweiz.</p>
-  </header>
+<header class="hero">
+  <div class="inner">
+    <div class="hero-text">
+      <div class="eyebrow" id="kw">SuccessFactors · HRIS</div>
+      <h1><span>HRIS</span><span class="r">Jobradar</span></h1>
+      <p class="tagline">Nye stillinger, samlet ét sted<i>.</i></p>
+      <p class="lede" id="lede">Nye stillinger med <b>SuccessFactors</b> eller <b>HRIS</b> i titlen hos 18 virksomheder i Danmark, Sverige, Finland, Tyskland, Storbritannien og Schweiz.</p>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <path d="M200 30 Q214 20 228 30 L362 128 Q376 138 371 155 L320 312 Q315 328 298 328 L102 328 Q85 328 80 312 L29 155 Q24 138 38 128 L172 30 Q186 20 200 30 Z" fill="var(--shape)"/>
+        <path d="M200 92 L302 166 L263 286 L137 286 L98 166 Z" fill="none" stroke="var(--teal)" stroke-width="2" stroke-dasharray="6 7" stroke-linejoin="round"/>
+        <g fill="none" stroke="#ffffff" stroke-opacity=".55" stroke-width="1.5">
+          <circle cx="200" cy="196" r="34"/><circle cx="200" cy="196" r="66" stroke-opacity=".3"/>
+        </g>
+        <path d="M200 196 L252 150" stroke="var(--teal)" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="200" cy="196" r="5" fill="#ffffff"/>
+        <circle cx="252" cy="150" r="6" fill="var(--teal)"/>
+        <path class="float" d="M62 268 Q70 262 78 268 L112 293 Q120 299 117 308 L104 348 Q101 357 92 357 L48 357 Q39 357 36 348 L23 308 Q20 299 28 293 Z" fill="var(--red)"/>
+        <path d="M330 2 L366 28 L352 70 L308 70 L294 28 Z" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="5 6" stroke-linejoin="round"/>
+        <path d="M355 300 L385 322 L374 357 L336 357 L325 322 Z" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+</header>
 
+<main class="inner wrap">
+  <p class="section-label">Periode</p>
   <div class="periods" role="group" aria-label="Periode">
     <button class="period" type="button" id="p-0" data-days="0" aria-pressed="false"><span class="n">0</span><span class="l">Slået op i dag</span></button>
     <button class="period" type="button" id="p-7" data-days="7" aria-pressed="true"><span class="n">0</span><span class="l">Seneste 7 dage</span></button>
@@ -140,6 +204,7 @@ td.open a:hover { text-decoration: underline; }
     <div class="chips" id="countries" role="group" aria-label="Lande"></div>
   </div>
 
+  <p class="section-label">Stillinger</p>
   <section class="panel">
     <div class="tablebox">
       <table>
@@ -152,9 +217,9 @@ td.open a:hover { text-decoration: underline; }
 
   <section class="status" id="status"></section>
   <p class="foot" id="foot"></p>
-</div>
+</main>
 
-<script type="application/json" id="jobdata">{"generated_at": "2026-11-16T12:46:44+00:00", "keywords": ["SuccessFactors", "HRIS"], "countries": ["DK", "SE", "FI", "DE", "GB", "CH"], "jobs": [{"title": "Senior Consultant SAP SuccessFactors / HCM (w/m/d)", "company": "KPMG", "url": "https://jobs.kpmg.de/job/Berlin-Senior-Consultant-SAP-SuccessFactors-HCM-%28wmd%29-10557/861992201/", "location": "", "country": "DE", "countries": ["DE"], "posted": null, "first_seen": "2026-11-11", "date_basis": "baseline", "active": true}, {"title": "SAP SuccessFactors Employee Central & Compensation Engineer", "company": "Ricoh Europe", "url": "https://careersatricoh.com/gb/en/job/RE02842", "location": "London, United Kingdom", "country": "GB", "countries": ["GB"], "posted": "2026-11-11", "first_seen": "2026-11-11", "date_basis": "posted", "active": true}], "sources": [{"company": "Ambu", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Lundbeck", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Novo Nordisk", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Wärtsilä", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Demant", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Ericsson", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Nordea", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Søstrene Grene", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Bygma", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Bertelsmann", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Ricoh Europe", "label": null, "ok": true, "matched": 1, "error": null}, {"company": "ZF Lifetec", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "KPMG", "label": "Danmark", "ok": true, "matched": 0, "error": null}, {"company": "KPMG", "label": "Finland", "ok": true, "matched": 0, "error": null}, {"company": "KPMG", "label": "Sverige", "ok": true, "matched": 0, "error": null}, {"company": "KPMG", "label": "Tyskland", "ok": true, "matched": 1, "error": null}, {"company": "KPMG", "label": "UK", "ok": true, "matched": 0, "error": null}, {"company": "DSV", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Coloplast", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Givaudan", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Swiss Re", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Munich Re", "label": null, "ok": true, "matched": 0, "error": null}], "not_covered": [{"company": "KPMG", "scope": "Schweiz (jobs.kpmg.ch)", "reason": "robots.txt forbyder al automatisk adgang (User-agent * / Disallow /)"}]}</script>
+<script type="application/json" id="jobdata">{"generated_at": "2026-11-17T13:34:00+00:00", "keywords": ["SuccessFactors", "HRIS"], "countries": ["DK", "SE", "FI", "DE", "GB", "CH"], "jobs": [{"title": "Senior Consultant SAP SuccessFactors / HCM (w/m/d)", "company": "KPMG", "url": "https://jobs.kpmg.de/job/Berlin-Senior-Consultant-SAP-SuccessFactors-HCM-%28wmd%29-10557/861992201/", "location": "", "country": "DE", "countries": ["DE"], "posted": null, "first_seen": "2026-11-11", "date_basis": "baseline", "active": true}], "sources": [{"company": "Ambu", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Lundbeck", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Novo Nordisk", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Wärtsilä", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Demant", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Ericsson", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Nordea", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Søstrene Grene", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Bygma", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Bertelsmann", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Ricoh Europe", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "ZF Lifetec", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "KPMG", "label": "Danmark", "ok": true, "matched": 0, "error": null}, {"company": "KPMG", "label": "Finland", "ok": true, "matched": 0, "error": null}, {"company": "KPMG", "label": "Sverige", "ok": true, "matched": 0, "error": null}, {"company": "KPMG", "label": "Tyskland", "ok": true, "matched": 1, "error": null}, {"company": "KPMG", "label": "UK", "ok": true, "matched": 0, "error": null}, {"company": "DSV", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Coloplast", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Givaudan", "label": null, "ok": true, "matched": 0, "error": null}, {"company": "Swiss Re", "label": null, "ok": false, "matched": 0, "error": "RuntimeError: søgesiden: HTTPSConnectionPool(host='careers.swissre.com', port=443): Read timed out. (read timeout=25); sitemap: 503 Server Error: Service Unavailable for url: https://careers.swissre.com/sitemap.xml"}, {"company": "Munich Re", "label": null, "ok": true, "matched": 0, "error": null}], "not_covered": [{"company": "KPMG", "scope": "Schweiz (jobs.kpmg.ch)", "reason": "robots.txt forbyder al automatisk adgang (User-agent * / Disallow /)"}]}</script>
 <script>
 (function () {
   var DATA = {};
