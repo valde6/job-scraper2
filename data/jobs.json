@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "generated_at": "2026-11-23T14:40:36+00:00",
+ "generated_at": "2026-11-24T14:54:57+00:00",
  "keywords": [
   "SuccessFactors",
   "HRIS"
@@ -26,7 +26,7 @@
    ],
    "posted": null,
    "first_seen": "2026-11-11",
-   "last_seen": "2026-11-23",
+   "last_seen": "2026-11-24",
    "active": true,
    "date_basis": "baseline",
    "source": "successfactors"
@@ -72,12 +72,12 @@
    "label": null,
    "type": "successfactors",
    "ok": true,
-   "listed": 158,
+   "listed": 161,
    "matched": 0,
    "error": null,
-   "seconds": 2.8,
+   "seconds": 2.6,
    "allow_empty": false,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "Lundbeck",
@@ -87,9 +87,9 @@
    "listed": 10,
    "matched": 0,
    "error": null,
-   "seconds": 2.7,
+   "seconds": 2.4,
    "allow_empty": false,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "Novo Nordisk",
@@ -99,9 +99,9 @@
    "listed": 6,
    "matched": 0,
    "error": null,
-   "seconds": 3.9,
+   "seconds": 3.5,
    "allow_empty": true,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "Wärtsilä",
@@ -111,9 +111,9 @@
    "listed": 10,
    "matched": 0,
    "error": null,
-   "seconds": 2.5,
+   "seconds": 2.4,
    "allow_empty": false,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "Demant",
@@ -123,33 +123,33 @@
    "listed": 8,
    "matched": 0,
    "error": null,
-   "seconds": 4.8,
+   "seconds": 4.5,
    "allow_empty": false,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "Ericsson",
    "label": null,
    "type": "eightfold",
    "ok": true,
-   "listed": 4,
+   "listed": 5,
    "matched": 0,
    "error": null,
-   "seconds": 2.3,
+   "seconds": 2.4,
    "allow_empty": false,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "Nordea",
    "label": null,
    "type": "nordea",
    "ok": true,
-   "listed": 9,
+   "listed": 10,
    "matched": 0,
    "error": null,
-   "seconds": 3.2,
+   "seconds": 3.0,
    "allow_empty": false,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "Søstrene Grene",
@@ -159,9 +159,9 @@
    "listed": 0,
    "matched": 0,
    "error": null,
-   "seconds": 2.5,
+   "seconds": 2.7,
    "allow_empty": true,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "Bygma",
@@ -173,19 +173,19 @@
    "error": null,
    "seconds": 3.4,
    "allow_empty": false,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "Bertelsmann",
    "label": null,
    "type": "successfactors",
    "ok": true,
-   "listed": 41,
+   "listed": 40,
    "matched": 0,
    "error": null,
-   "seconds": 4.1,
+   "seconds": 3.5,
    "allow_empty": false,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "Ricoh Europe",
@@ -195,9 +195,9 @@
    "listed": 105,
    "matched": 0,
    "error": null,
-   "seconds": 14.9,
+   "seconds": 13.4,
    "allow_empty": false,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "ZF Lifetec",
@@ -209,19 +209,19 @@
    "error": null,
    "seconds": 1.2,
    "allow_empty": false,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "KPMG",
    "label": "Danmark",
    "type": "hrmanager",
    "ok": true,
-   "listed": 9,
+   "listed": 8,
    "matched": 0,
    "error": null,
-   "seconds": 1.7,
+   "seconds": 1.6,
    "allow_empty": false,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "KPMG",
@@ -233,7 +233,7 @@
    "error": null,
    "seconds": 2.4,
    "allow_empty": true,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "KPMG",
@@ -243,9 +243,9 @@
    "listed": 11,
    "matched": 0,
    "error": null,
-   "seconds": 2.0,
+   "seconds": 1.8,
    "allow_empty": false,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "KPMG",
@@ -255,9 +255,9 @@
    "listed": 367,
    "matched": 1,
    "error": null,
-   "seconds": 3.8,
+   "seconds": 3.5,
    "allow_empty": false,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "KPMG",
@@ -267,57 +267,57 @@
    "listed": 6,
    "matched": 0,
    "error": null,
-   "seconds": 2.5,
+   "seconds": 2.4,
    "allow_empty": false,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "DSV",
    "label": null,
    "type": "successfactors",
    "ok": true,
-   "listed": 47,
+   "listed": 46,
    "matched": 0,
    "error": null,
    "seconds": 6.4,
    "allow_empty": false,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "Coloplast",
    "label": null,
    "type": "successfactors",
    "ok": true,
-   "listed": 270,
+   "listed": 274,
    "matched": 0,
    "error": null,
-   "seconds": 13.0,
+   "seconds": 12.5,
    "allow_empty": false,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "Givaudan",
    "label": null,
    "type": "phenom",
    "ok": true,
-   "listed": 334,
+   "listed": 338,
    "matched": 0,
    "error": null,
-   "seconds": 47.7,
+   "seconds": 46.0,
    "allow_empty": false,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "Swiss Re",
    "label": null,
    "type": "successfactors",
    "ok": true,
-   "listed": 209,
+   "listed": 215,
    "matched": 0,
    "error": null,
    "seconds": 10.4,
    "allow_empty": false,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   },
   {
    "company": "Munich Re",
@@ -327,9 +327,9 @@
    "listed": 0,
    "matched": 0,
    "error": null,
-   "seconds": 1.1,
+   "seconds": 1.2,
    "allow_empty": true,
-   "last_ok": "2026-11-23"
+   "last_ok": "2026-11-24"
   }
  ],
  "not_covered": [
